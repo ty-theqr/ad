@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The QR: Premium Ad Management Proposal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts (Noto Sans KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 폰트 및 배경 설정 */
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            background-color: #F8FAFC; 
+            color: #334155; 
+            /* 한글 단어 단위 줄바꿈 (글자 깨짐 방지) */
+            word-break: keep-all; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 배경 패턴 */
+        .hero-pattern {
+            background-color: #0F172A;
+            background-image: radial-gradient(#1E293B 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* 유리 질감 카드 효과 */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 그라디언트 텍스트 */
+        .gradient-text {
+            background: linear-gradient(135deg, #3B82F6, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 카드 호버 효과 */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 체크리스트 스타일 */
+        .check-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .check-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #06B6D4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-200 selection:text-slate-900" id="proposal-content">
+
+    <!-- 1. 헤더 섹션 -->
+    <header class="hero-pattern text-white pt-24 pb-32 px-4 relative overflow-hidden">
+        <!-- 로고 이미지 파일 복구 (파일명: logo_white.png) -->
+        <img src="logo_white.png" 
+             alt="THE QR Logo" 
+             class="absolute top-8 right-6 md:right-12 w-32 md:w-40 z-20 opacity-90 hover:opacity-100 transition-opacity"
+             onerror="this.onerror=null; this.src='https://via.placeholder.com/160x40/000000/FFFFFF?text=THE+QR(Logo)';">
+
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-900/20 to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-cyan-500/30 bg-cyan-900/20 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span class="text-cyan-400 text-xs font-bold tracking-wider uppercase">THE QR SNS/CPC AD</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                    광고 예산,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">지키는 것이 버는 것입니다.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-lg">
+                    SNS와 검색광고, 불안하신가요? <br>
+                    더큐알(The QR)은 단순 집행을 넘어 <strong>'실시간 리스크 관리 시스템'</strong>으로 귀사의 마케팅 자산을 완벽하게 보호합니다.
+                </p>
+            </div>
+            <div class="relative">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform rotate-1 hover:rotate-0 transition duration-500">
+                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" 
+                          alt="Data Analysis Dashboard" 
+                          crossorigin="anonymous"
+                          class="w-full h-auto object-cover opacity-90 hover:opacity-100 transition duration-300">
+                    
+                    <!-- 오버레이 라벨 -->
+                    <div class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur-sm border border-slate-700 px-4 py-2 rounded-lg">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-xs font-bold text-cyan-400">Live Monitoring Active</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 배경 효과 -->
+                <div class="absolute -inset-4 bg-cyan-500/20 blur-2xl -z-10 rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="max-w-7xl mx-auto px-4 -mt-20 relative z-20 space-y-24 pb-24">
+
+        <!-- 2. 핵심 가치 제안 -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-panel p-8 rounded-2xl card-hover bg-white">
+                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-2xl mb-4">🛡️</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">예산 사고 Zero</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    광고 모니터링을 통해 예산 과다 소진 및 미소진으로 인한 기회비용 손실을 원천 차단합니다.
+                </p>
+            </div>
+            <div class="glass-panel p-8 rounded-2xl card-hover bg-white">
+                <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center text-2xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">광고 효율 개선</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    CPC 급등이나 효율 저하 징후 발생 시, 분석과 협의를 통해 소재 교체 및 입찰가 조정을 실행합니다.
+                </p>
+            </div>
+            <div class="glass-panel p-8 rounded-2xl card-hover bg-white">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-2xl mb-4">✨</div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">크리에이티브 케어</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    단순 운영을 넘어섭니다. 자체 제작팀과 연계하여 광고 피로도를 낮추고 효율을 높이는 소재를 실행합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. 3단계 방어 시스템 -->
+        <section>
+            <div class="text-center mb-16">
+                <span class="text-cyan-600 font-bold tracking-wider text-sm uppercase">Systematic Process</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2">
+                    더큐알의 <span class="gradient-text">3단계 안심 운영 시스템</span>
+                </h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+                    단순한 대행을 넘어섭니다. 이슈의 경중에 따라 체계적으로 분류하고 대응하는<br>
+                    더큐알만의 독자적인 매니지먼트 프로토콜을 적용합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- 레이더 차트 -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100">
+                        <h4 class="text-sm font-bold text-slate-500 mb-6 text-center">SYSTEM COVERAGE ANALYSIS</h4>
+                        <div class="chart-container">
+                            <canvas id="systemRadarChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-slate-400 mt-4">
+                            * The QR은 예산 안전성과 대응 속도에서<br>업계 평균 대비 압도적인 퍼포먼스를 보입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 텍스트 콘텐츠 -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <!-- Level 1: Emergency Defense -->
+                    <div class="flex gap-6 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-slate-100 group">
+                        <div class="flex-shrink-0 w-16 h-16 bg-red-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shadow-red-200 group-hover:scale-110 transition">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                                Emergency Defense
+                                <span class="ml-3 text-xs font-bold bg-red-100 text-red-600 px-2 py-1 rounded">긴급 대응</span>
+                            </h3>
+                            <p class="text-slate-600 mt-2 text-sm">
+                                <strong>예산 및 계정 보호:</strong> 광고비 과다 소진, 광고비 미소진, 계정 비활성화, 소재 비승인 등 치명적 이슈 발생 시 
+                                <span class="text-red-600 font-bold">보완/개선</span> 조치를 취합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: Performance Tuning -->
+                    <div class="flex gap-6 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-slate-100 group">
+                        <div class="flex-shrink-0 w-16 h-16 bg-amber-400 text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shadow-amber-200 group-hover:scale-110 transition">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                                Performance Tuning
+                                <span class="ml-3 text-xs font-bold bg-amber-100 text-amber-700 px-2 py-1 rounded">효율 개선</span>
+                            </h3>
+                            <p class="text-slate-600 mt-2 text-sm">
+                                <strong>품질 지수 관리:</strong> CPC 단가가 급등하거나 클릭률(CTR)이 떨어질 경우, 
+                                <span class="text-amber-600 font-bold">빠른 시간내 원인 분석 및 소재 최적화</span>를 진행합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Level 3: Ad Tracking -->
+                    <div class="flex gap-6 p-6 rounded-xl hover:bg-white hover:shadow-lg transition border border-transparent hover:border-slate-100 group">
+                        <div class="flex-shrink-0 w-16 h-16 bg-cyan-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shadow-cyan-200 group-hover:scale-110 transition">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800 flex items-center">
+                                Ad Tracking & Report
+                                <span class="ml-3 text-xs font-bold bg-cyan-100 text-cyan-700 px-2 py-1 rounded">진행/보고</span>
+                            </h3>
+                            <p class="text-slate-600 mt-2 text-sm">
+                                <strong>투명한 집행 공유:</strong> 광고 진행 상황을 꼼꼼하게 트래킹하고, 이를 바탕으로 <span class="text-cyan-600 font-bold">광고 집행 보고서</span>를 작성하여 투명하게 공유합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 보고 체계 -->
+        <section>
+            <div class="text-center mb-10">
+                <span class="text-cyan-600 font-bold tracking-wider text-sm uppercase">Feedback Loop</span>
+                <h2 class="text-3xl font-bold text-slate-800 mt-2">체계적인 보고 프로세스</h2>
+                <p class="text-slate-500 mt-2">초기 안정화부터 정기 운영까지, 빈틈없는 보고 체계를 갖추고 있습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Phase 1: New Launch -->
+                <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-xl hover:border-cyan-300 transition duration-300 relative group">
+                    <div class="absolute top-0 right-0 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">신규 런칭</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-cyan-100 group-hover:text-cyan-600 transition">1</span>
+                        집중 케어 (1개월)
+                    </h3>
+                    <div class="space-y-3 text-sm text-slate-600">
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                            <span class="font-medium">15일차</span>
+                            <span class="text-cyan-600 font-bold">중간 현황 보고</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg border border-cyan-100">
+                            <span class="font-medium">월말</span>
+                            <span class="text-cyan-600 font-bold">최종 성과 보고</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2">*초기 세팅 및 최적화 집중 기간</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Regular Operation -->
+                <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-xl hover:border-amber-300 transition duration-300 relative group">
+                    <div class="absolute top-0 right-0 bg-amber-400 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">정기 운영</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-amber-100 group-hover:text-amber-600 transition">2</span>
+                        안정화 관리
+                    </h3>
+                    <div class="space-y-3 text-sm text-slate-600">
+                        <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                            <span class="font-medium">월간</span>
+                            <span class="text-slate-700 font-bold">전월 성과 리포트</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-lg">
+                            <p class="font-medium mb-1">Feedback Loop</p>
+                            <p class="text-xs text-slate-500">성과 분석을 통한 차월 전략 수립 및 소재 기획 제안</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Communication -->
+                <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-xl hover:border-purple-300 transition duration-300 relative group">
+                    <div class="absolute top-0 right-0 bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">상시 소통</div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center mr-2 group-hover:bg-purple-100 group-hover:text-purple-600 transition">3</span>
+                        핫라인 & 파트너십
+                    </h3>
+                    <div class="space-y-3 text-sm text-slate-600">
+                        <div class="flex items-center p-2">
+                            <span class="text-purple-500 mr-2">●</span>
+                            <span>담당자 전용 핫라인 구축</span>
+                        </div>
+                        <div class="flex items-center p-2">
+                            <span class="text-purple-500 mr-2">●</span>
+                            <span>정기 성과 리뷰 및 전략 제안</span>
+                        </div>
+                        <div class="flex items-center p-2">
+                            <span class="text-purple-500 mr-2">●</span>
+                            <span>신속한 피드백 반영 및 조치</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Why The QR -->
+        <section class="bg-[#1A237E] rounded-3xl p-8 md:p-16 text-white overflow-hidden relative">
+            <!-- 배경 데코레이션 -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+            <div class="relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Why The QR?</h2>
+                    <p class="text-slate-300">
+                        단순한 마케팅 대행사가 아닙니다.<br>
+                        <strong>기획(Marketing)</strong>과 <strong>제작(Production)</strong>이 완벽하게 결합된 올인원 파트너입니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <!-- 1. 제작 역량 -->
+                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/10 hover:bg-white/20 transition">
+                        <div class="text-4xl mb-4">🎥</div>
+                        <h3 class="font-bold text-lg mb-2">In-House Production</h3>
+                        <p class="text-xs text-slate-300">내부 기획/촬영/편집팀 보유로<br>고퀄리티 소재 즉각 제작</p>
+                    </div>
+                    
+                    <!-- 2. 광고 집중 -->
+                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/10 hover:bg-white/20 transition">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h3 class="font-bold text-lg mb-2">Performance Intensive</h3>
+                        <p class="text-xs text-slate-300">지속적인 모니터링과 최적화로<br>광고 효율(ROAS) 극대화 집중</p>
+                    </div>
+
+                    <!-- 3. 고객 케어 -->
+                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/10 hover:bg-white/20 transition">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="font-bold text-lg mb-2">Dedicated Partnership</h3>
+                        <p class="text-xs text-slate-300">단순 대행 관계를 넘어선<br>클라이언트 전담 밀착 케어</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 비용 및 정책 -->
+        <section class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-800">투명한 운영 정책</h2>
+                <p class="text-slate-500 mt-2">숨겨진 비용 없이, 성과에 집중할 수 있는 합리적인 제안을 드립니다.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 flex flex-col md:flex-row">
+                <!-- Pricing Left -->
+                <div class="p-10 md:w-2/3">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6">Standard Management</h3>
+                    <ul class="space-y-4 check-list text-slate-600">
+                        <li><strong>SNS & Naver 통합 운영 관리</strong></li>
+                        <li>실시간 리스크 모니터링 & 대응</li>
+                        <li>월간 성과 분석 보고서 제공</li>
+                        <li>소재 기획 및 반영 (자체 제작팀 연계)</li>
+                        <li>담당자 핫라인 구축</li>
+                    </ul>
+                </div>
+                <!-- Pricing Right -->
+                <div class="bg-slate-50 p-10 md:w-1/3 flex flex-col justify-center items-center border-t md:border-t-0 md:border-l border-slate-200">
+                    <p class="text-slate-500 text-sm mb-2">Management Fee</p>
+                    <div class="text-5xl font-black text-slate-800 mb-2">15<span class="text-2xl text-slate-500 font-normal">%</span></div>
+                    <p class="text-xs text-slate-400 mb-6">총 광고 집행 금액 기준</p>
+                    <button class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-4 rounded-lg transition transform hover:scale-105">
+                        견적 요청하기
+                    </button>
+                    <p class="text-[10px] text-slate-400 mt-4 text-center">
+                        *최소 집행 예산: 200만원
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="border-t border-slate-200 mt-24 pt-12 pb-12">
+            <div class="text-center">
+                <div class="font-black text-2xl text-slate-800 mb-4">THE QR</div>
+                <p class="text-slate-500 text-sm mb-6">
+                    Digital Contents & Marketing Solution<br>
+                    대표 : 정영민 / 이메일 : theqr@naver.com<br>
+                    사업자등록번호 : 899-50-00633 / 문의 : 055-645-1776<br>
+                    주소 : 경상남도 통영시 광도면 죽림해안로 66 4층 (성원빌딩)
+                </p>
+                <div class="text-xs text-slate-400">
+                    © 2020 The QR. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Chart.js 설정
+        const ctxRadar = document.getElementById('systemRadarChart').getContext('2d');
+        
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['예산 안전성', '대응 속도', '소재 퀄리티', '타겟 정밀도', '보고서 투명성', '채널 확장성'],
+                datasets: [{
+                    label: 'The QR System',
+                    data: [98, 95, 100, 90, 95, 85], 
+                    fill: true,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)', 
+                    borderColor: '#06B6D4',
+                    pointBackgroundColor: '#06B6D4',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#06B6D4'
+                }, {
+                    label: 'Industry Avg',
+                    data: [70, 60, 65, 70, 60, 50], 
+                    fill: true,
+                    backgroundColor: 'rgba(148, 163, 184, 0.2)', 
+                    borderColor: '#94a3b8',
+                    pointBackgroundColor: '#94a3b8',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#94a3b8',
+                    borderDash: [5, 5] 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: {
+                    line: { borderWidth: 3 }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.05)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        pointLabels: {
+                            font: { size: 11, family: "'Noto Sans KR', sans-serif", weight: 'bold' },
+                            color: '#64748b'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false } 
+                    }
+                },
+                plugins: {
+                    legend: { 
+                        position: 'bottom',
+                        labels: { font: { family: "'Noto Sans KR', sans-serif" }, padding: 20 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '점';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
