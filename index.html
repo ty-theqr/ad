@@ -70,15 +70,17 @@
 <body class="antialiased selection:bg-cyan-200 selection:text-slate-900" id="proposal-content">
 
     <!-- 1. 헤더 섹션 -->
-    <header class="hero-pattern text-white pt-24 pb-32 px-4 relative overflow-hidden">
-        <!-- 로고 이미지 파일 복구 (파일명: logo_white.png) -->
+    <header class="hero-pattern text-white pt-12 pb-32 px-4 relative overflow-hidden flex flex-col items-center">
+        <!-- 배경 그라디언트 -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-900/20 to-transparent pointer-events-none"></div>
+
+        <!-- 로고 이미지: 중앙 정렬, 하단 15px 마진 적용 -->
         <img src="logo_white.png" 
              alt="THE QR Logo" 
-             class="absolute top-8 right-6 md:right-12 w-32 md:w-40 z-20 opacity-90 hover:opacity-100 transition-opacity"
+             class="relative z-20 w-32 md:w-40 mb-[15px] opacity-90 hover:opacity-100 transition-opacity"
              onerror="this.onerror=null; this.src='https://via.placeholder.com/160x40/000000/FFFFFF?text=THE+QR(Logo)';">
 
-        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-900/20 to-transparent pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-cyan-500/30 bg-cyan-900/20 rounded-full">
                     <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
